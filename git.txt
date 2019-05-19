@@ -13,5 +13,9 @@ git branch dev（创建分支)
 git checkout dev (切换分支)
 git checkout -b 分支名  （创建并进入分支操作）
 
-ccc
+ >.gitignore（创建git 忽略目录）
+
+
+git remote add origin git地址（关联远程服务器）
+
 
