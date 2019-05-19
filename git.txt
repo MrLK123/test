@@ -1,0 +1,8 @@
+git init
+git --config global user.name
+git --config global user.email
+git status
+git add .
+git add ÎÄ¼şÃû
+git commit -m  ×¢ÊÍ
+git log
