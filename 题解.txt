@@ -1,0 +1,121 @@
+62.	用jq 转 vue 如何实现？
+  1. 导入Vue.js，去除jQuery。
+  2. 根视图id绑定
+  3. 为input添加v-model
+  4. 删除id、name这些用于jQuery的属性
+  5. 将点击事件onclick改为v-on:click
+  6. 引用数据
+  7. 替换ready方法
+  8.修改获取和修改元素属性的方式
+  9. Vue使用watch方法测试
+ 63.	 用vue实现下拉菜单
+ 在编写模板之前，我们来分析一下这个组件的视图结构和功能。
+下拉菜单组件应该由两部分组成：
+
+选中项的文本
+待选菜单（默认隐藏）
+
+它的主要功能包括：
+
+鼠标经过下拉菜单组件，显示待选菜单
+鼠标滑出下拉菜单组件，隐藏待选菜单
+鼠标点击待选菜单中的条目，选中项文本更新，组件派发change事件
+
+64.	css动画
+animation-name	规定需要绑定到选择器的 keyframe 名称。。
+animation-duration	规定完成动画所花费的时间，以秒或毫秒计。
+animation-timing-function	规定动画的速度曲线。
+animation-delay	规定在动画开始之前的延迟。
+animation-iteration-count	规定动画应该播放的次数。
+animation-direction	规定是否应该轮流反向播放动画。
+65.	 后台数据展现在图表 
+	用echarts等类库展现UI
+66.	h5在移动端的弊端
+总结概HTML5有以下优点：
+
+　　1、提高可用性和改进用户的友好体验；
+
+　　2、有几个新的标签，这将有助于开发人员定义重要的内容；
+
+　　3、可以给站点带来更多的多媒体元素(视频和音频)；
+
+　　4、可以很好的替代FLASH和Silverlight；
+
+　　5、当涉及到网站的抓取和索引的时候，对于SEO很友好；
+
+　　6、将被大量应用于移动应用程序和游戏。
+
+HTML5缺点
+
+　　移动
+
+　　浏览器的编程模型还是90年代流行的单进程单线程 （single process single thread），但原生实现（比如用Object C）的APP可以用多线程。移动端编写APP，可以使用多个线程，第一个线程，被称作主线程（main thread），编程的第一原则是don’t do heavy work on main thread。通常只让它处理UI事件等，其他重度的工作让其他背景线程来做。但浏览器只有一个线程，所有的事情都是它干。在台式机上，浏览器编程还没有太多问题，因为够快；但在移动端，这个弊端很明显。
+它允许网站利用数GB垃圾数据对用户展开轰炸，甚至会在短时间内将硬盘塞满。多款主流浏览器均会受此影响
+
+67.	pop push shit unshift 的区别
+队列：先进先出
+堆栈：后进先出
+实现队列的方法：
+shift:从集合中把第一个元素删除，并返回这个元素的值。
+unshift: 在集合开头添加一个或更多元素，并返回新的长度
+push:在集合中添加元素，并返回新的长度
+pop:从集合中把最后一个元素删除，并返回这个元素的值。
+
+68.	url的query属性变成ob对象 
+1、js原生方法
+
+思路：先通过split拆解？得到字符串phone=12345678901&pwd=123123   ，然后在通过split拆解&符号左右的字符串，最后再通过split拆解=号左右的字符串即可。
+2、	node.js方法之url+queryString
+
+思路：先通过url.parse(str1)获得一个分解url的对象，调用query属性得到字符串：phone=12345678901&pwd=123123  ；然后用querystring.parse()方法来直接转换成JSON对象。
+3、node.js方法之url的解构方法
+
+思路：使用node.js自带的URL构造函数得到。
+
+69.	webpack执行流程
+   初始化参数：从配置文件和 Shell 语句中读取与合并参数，得出最终的参数；
+开始编译：用上一步得到的参数初始化 Compiler 对象，加载所有配置的插件，执行对象的 run 方法开始执行编译；
+确定入口：根据配置中的 entry 找出所有的入口文件；
+编译模块：从入口文件出发，调用所有配置的 Loader 对模块进行翻译，再找出该模块依赖的模块，再递归本步骤直到所有入口依赖的文件都经过了本步骤的处理；
+完成模块编译：在经过第4步使用 Loader 翻译完所有模块后，得到了每个模块被翻译后的最终内容以及它们之间的依赖关系；
+输出资源：根据入口和模块之间的依赖关系，组装成一个个包含多个模块的 Chunk，再把每个 Chunk 转换成一个单独的文件加入到输出列表，这步是可以修改输出内容的最后机会；
+输出完成：在确定好输出内容后，根据配置确定输出的路径和文件名，把文件内容写入到文件系统。
+
+70.node.js继承
+在nodejs中通过使用util模块来实现继承关系。
+
+util.inherits(子类名, 父类名)是一个实现对象间原型继承 的函数。
+
+72.三个div如何在一条线上
+1.语法：
+
+float : none | left |right 
+
+2.参数：
+
+none :  对象不浮动
+
+left :  对象浮在左边
+
+right :  对象浮在右边
+
+3.实例：例如有3个div块，其id属性分别为div1、div2、div3，则可以将3个div块的float属性均设为left，就可以依次做横行排列了。
+4.父元素设置display-flex
+73.ES6新特性
+  1⃣️ 变量声明－let 与 const
+  2⃣️模版字符串
+  3⃣️解构(destructuring)赋值
+  4⃣️展开运算符(spread operater)
+  5⃣️ arrow function箭头函数
+  6⃣️函数参数的默认值
+  7⃣️对象字面量({})扩展
+   8⃣️class、extend、super
+   9⃣️模块的 Import 和 Export
+   10.promise\generator
+
+ 74.webpack热加载
+   webpack-hot-middleware中间件是webpack的一个plugin，通常结合webpack-dev-middleware一起使用。借助它可以实现浏览器的无刷新更新（热更新），即webpack里的HMR（Hot Module Replacement）
+   __webpack_hmr是一个type为EventSource的请求, 从Time栏可以看出：默认情况下，服务器每十秒推送一条信息到浏览器。
+75.事件循环机制
+ 事件循环机制呢，简单点来说，就是在执行上下文的过程中，对函数的入栈和出栈。执行前函数先入栈，执行完后函数出栈。如若遇到了一些异步操作像回调函数以及ajax、setTimeout等，会先将他们交给浏览器的其他模块去执行，执行完后，会把回调函数放入到taskqueue中。当所有的call stack执行完后再开始执行task queue中的函数。 
+76.图片压缩

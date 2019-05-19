@@ -1,0 +1,87 @@
+﻿flexible是手淘响应式布局
+
+ fiexible工作原理是根据不同设备的布局viewport设置html 的font-size(布局viewport*dpr/10);
+根据dpr的值配置body的font-size(默认12*dpr);
+ 
+dva 配置flexible(大写的PX不会被解析成rem单位)
+      1将flexible引入模板
+      2安装postcss-pxtorem 插件
+      3.修改.webpackrc更名为.webpackrc.js
+const pxtorem = require('postcss-pxtorem');
+const pxtorem2 = _interopRequireDefault(pxtorem).default;
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }export default {
+  entry: "./src/index.js",
+  "env": {
+   "development": {
+   extraPostCSSPlugins: [
+        pxtorem2({ rootValue: 37.5, propWhiteList: [], })
+   ]
+   },
+   "production": {
+   extraPostCSSPlugins: [
+   pxtorem2({ rootValue: 37.5, propWhiteList: [], })
+   ]
+   }
+  }
+}
+
+
+
+
+create-app 配置flexible（/*no*/表示不被解析为rem）
+     1将flexible引入
+     2安装px2rem-loader;
+    3.修改webpack.config.base.js
+module:{
+    rules:[{
+               test: /\.css$/,
+               use: [{
+                    loader: 'style-loader'
+                    }, {
+                       loader: 'css-loader'
+                    }, {
+                       loader: 'px2rem-loader',
+                       options: {
+                         remUnit: 37.5 
+                       }
+                    }]
+                },
+
+
+Vue-cli配置flexible(/*no*/表示不被解析为rem)
+1. 安装flexible   
+      yarn add lib-flexible
+2.修改main.js，引入flexible
+    import 'lib-flexible‘
+3.安装px2rem包
+   yarn add px2rem-loader –dev
+
+4.修改配置文件:build/utils.js
+   在对应位置添加：
+ var px2remLoader = {
+loader: 'px2rem-loader',
+options: {
+remUnit: 37.5
+}
+}
+5.配置加入到generatorLoaders函数中。。
+function generateLoaders (loader, loaderOptions) {
+    const loaders = options.usePostCSS ? [cssLoader, px2remLoader,postcssLoader] : [cssLoader,px2remLoader]
+
+
+1.在以前的styled-components中设置全局样式只需要 引入injectGlobal （添加全局样式）即可，然而今天我用injectGlobal 的时候，总是提示不存在，找了半天找到原因。
+
+The injectGlobal API was removed and replaced by createGlobalStyle in styled-components v4. 用官方的话来讲，就是这个API 从现在开始废除了，换成 createGlobalStyle 新的API ，作为一个样式组件出现，按照样式组件思想，以一个标签形式被引入。
+
+2.Motal footer在遇到共用时，不需要footer的组件不能设置属性footer为任意值
+ 应该设一个大的对象，用footer时该对象值为空，否则为{footer:null}
+3. react框架使用百度地图
+方法一：用window对象保存BMap变量，实现HTML文件和JS文件间的变量传递
+方法二.通过webpack的externals加载BMap使它可以通过require或import引入
+webpack的externals的具体作用
+
+4.富文本编辑器
+包可以从npm安装 react-draft-wysiwyg
+  $ npm install --save react-draft-wysiwyg draft-js
+  转换为html
+  npm install draftjs-to-html

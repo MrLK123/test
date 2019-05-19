@@ -1,0 +1,349 @@
+
+ 1.数组排序算法
+        a.相邻两个数进行比较，第一波比较后，最大的数在最后。（每比较完之后，后面的数就减少一个比较 ）
+        b.选择排序，让数组中的每一个数，依次与后面的数进行比较，如果前面的数大于后面的数，就进行位置的交换。
+        c.sort
+
+2.数组去重
+       a.新建一个数组，遍历去要重的数组，当值不在新数组的时候（indexOf为-1）就加入该新数组中；
+       b.如果当前数组的第 i 项在当前数组中第一次出现的位置不是 i，那么表示第 i 项是重复的，忽略掉。否则存入结果数组。
+       c.ES6提供了新的数据结构Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。
+
+3.数组的方法
+    --变异和非变异
+     变异方法 ：  push() pop() shift() unshift() splice() sort() reverse()  会改变被这些方法调用的原始数组。
+
+     非变异方法：filter() map() (concat() slice() 深拷贝)这些不会改变原始数组，但总是返回一个新数组。可用新数组替换旧数组
+
+   1.进出栈方法(添加：返回长度；删除：返回元素)
+
+                 push() 向数组的末尾添加一个或更多元素，并返回新的长度。
+                 pop()  删除数组的最后一个元素并返回删除的元素。
+                 shift()  删除并返回数组的第一个元素。
+                 unshift()  向数组的开头添加一个或更多元素，并返回新的长度。
+   
+   2.数组倒序：reverse()
+   
+   3.连接方法
+                concat()  连接两个或更多的数组，并返回结果。
+   4. 操作方法
+                slice() 选取数组的的一部分，并返回一个新数组。  不包括最后一位
+                splice()  从数组中添加或删除元素。
+   5.位置方法
+
+                indexOf() 搜索数组中的元素，并返回它所在的位置。
+                lastIndexOf() 返回一个指定的字符串值最后出现的位置，在一个字符串中的指定位置从后向前搜索。
+    6. join() 方法
+
+                用于把数组中的所有元素放入一个字符串。
+                元素是通过指定的分隔符进行分隔的。
+
+
+
+4.焦点图
+
+
+5.浏览器缓存机制
+    作用：浏览器缓存最主要的作用是减少网络传输的损耗以及降低服务器压力。
+    过程：
+    a.当浏览器发起 HTTP 请求时，会依次查找缓存位置中是否存在缓存资源并通过缓存标识字段 Expires 或 Cache-Control 来验证缓存资源是否过期。若是命中缓存（即存在缓存资源并且缓存资源未过期），则浏览器响应 HTTP Status Code 200，并直接使用缓存资源作为返回结果，不需要发起 HTTP 请求；若是存在缓存资源但缓存资源已过期，则进入协商缓存。
+    b.Last-Modified 是服务器端在响应请求时用来说明资源的最后修改时间。请求时，会将 If-Modified-Since 的值与被请求资源的最后修改时间做对比。如果相同，说明资源没有新的修改，则响应 HTTP Status Code 304，浏览器会继续使用缓存资源；如果最后修改时间比较新，则说明资源被修改过，则响应 HTTP Status Code 200，并返回最新的资源。
+
+
+6.浏览器同源策略
+    同源概念：协议相同、域名相同、端口相同；
+    目的：同源政策的目的，是为了保证用户信息的安全，防止恶意的网站窃取数据。
+    限制范围：
+    随着互联网的发展，"同源政策"越来越严格。目前，如果非同源，共有三种行为受到限制。
+
+    （1） Cookie、LocalStorage 和 IndexDB 无法读取。
+
+    （2） DOM 无法获得。
+
+    （3） AJAX 请求不能发送。
+7.跨域的几种方法
+     1.CORS；
+     2.jsonp;
+     3,代理服务器proxy
+     
+8.flex  --微信响应式开发
+   父元素属性：
+        flex-direction
+        flex-wrap
+        flex-flow
+        justify-content
+        align-items
+        align-content
+  子元素属性：
+        order
+        flex-grow
+        flex-basis
+        flex-shrink
+        flex
+        align-self
+9.rem+js flexible  vw vh
+
+10.event loop
+       
+11.闭包
+
+12.ES5继承和ES6继承
+
+13.原型和原型链
+
+14.设计模式
+
+15.this
+
+16.不定宽高水平垂直居中
+    一：
+      div.father{
+        background: #09f;
+        width: 300px;
+        height: 300px;
+        display: flex;
+        justify-content:center;
+        align-items:center;
+        
+      }
+
+       二：
+       .father{
+               width: 200px;
+               height: 200px;
+               background: red;
+               position: relative;
+          }
+          .son{
+               width: 50px;
+               height: 50px;
+               background: #09f;
+               left:0px;
+               right:0px;
+              top:0px;
+              bottom:0px;
+              position: absolute;
+               margin:auto;
+          }
+          三：
+          div.father{
+        background: #09f;
+        width: 300px;
+        height: 300px;
+        position:relative;
+      }
+      div.son{
+        background: #900;
+        width: 30px;
+        height: 30px;
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+      }
+17.阻止冒泡
+        高级浏览器：.event.stopPropagation() 
+        iE e.cancelBubble = true
+18.阻止默认动作
+       高级浏览器：event.preventDefault()
+        IE:e.returnValue=false
+19.DOM对象常用属性和方法
+  DOM对象常用方法
+
+appendChild( )
+
+通过把一个节点增加到当前节点的childNodes[] 数组中，给文档树增加节点
+
+cloneNode( )
+
+复制当前节点，或者复制当前节点的指定节点以及它的所有子节点
+
+hasChildNodes( )
+
+如果当前节点拥有子节点，则返回true
+
+insertBefore( )
+
+给文档树插入一个节点，位置在当前节点的指定子节点之前，如果该节点已经存在，则将其删除再插入到它的位置
+
+removeChild( )
+
+从文档树中删除并返回指定的子节点
+
+replaceChild( )
+
+从文档树中删除并返回指定的子节点，用另一个节点替换它
+
+
+
+Element节点元素的的方法
+
+getAttribute( )
+
+以字符串形式返回指定属性的值
+
+getAttributeNode( )
+
+以Atr节点的形式返回指定属性的值
+
+getElementByTagName（）
+
+返回一个Node数组，包含具有指定标记名的所有Element节点的子孙节点，其顺序为在文档中出项的顺序
+
+hasAttribuet( )
+
+如果该元素具有指定名字的属性，则返回true
+
+removeAttribute( )
+
+从元素中删除指定的属性
+
+removeAttributeNode( )
+
+从元素的属性列表中删除指定的Attr节点
+
+setAttribute( )
+
+把指定的属性设置为指定的字符串值，如果该属性不存在则添加一个新属性
+
+removeAttribuetNode( )
+
+把指定的Attr节点添加到改元素的属性列表中
+
+ 
+
+DOM对象常用属性
+
+attributes
+
+如果该节点是一个Element，则以NameNodeMap形式返回该元素的属性
+
+childNodes
+
+以Node[ ] 的形式存放当前节点的子节点，如果没有子节点，则返回空数组
+
+firstChild
+
+以Node形式返回当前节点的第一个子节点，如果没有子节点，则返回null
+
+lastChild
+
+以Node形式返回当前节点的最后一个子节点，如果没有子节点，则返回null
+
+nextSibling
+
+以Node形式返回当前节点的下一个兄弟节点，如果没有这样的节点，则返回null
+
+nodeName
+
+节点的名称，Element节点则代表Element的标记名称
+
+nodeType
+
+代表节点的类型
+
+parentNode
+
+以Node形式返回当前节点的父节点，如果没有父节点，则返回null
+
+PreviousSibling
+
+以Node形式返回紧挨当前节点，位于它之前的兄弟节点，如果没有这样的节点，则返回null
+20.事件对象
+
+21.localStorage
+一、什么是localStorage、sessionStorage
+
+在HTML5中，新加入了一个localStorage特性，这个特性主要是用来作为本地存储来使用的，解决了cookie存储空间不足的问题(cookie中每条cookie的存储空间为4k)，localStorage中一般浏览器支持的是5M大小，这个在不同的浏览器中localStorage会有所不同。
+
+ 
+
+二、localStorage的优势与局限
+
+localStorage的优势
+
+1、localStorage拓展了cookie的4K限制
+
+2、localStorage会可以将第一次请求的数据直接存储到本地，这个相当于一个5M大小的针对于前端页面的数据库，相比于cookie可以节约带宽，但是这个却是只有在高版本的浏览器中才支持的
+
+localStorage的局限
+
+1、浏览器的大小不统一，并且在IE8以上的IE版本才支持localStorage这个属性
+
+2、目前所有的浏览器中都会把localStorage的值类型限定为string类型，这个在对我们日常比较常见的JSON对象类型需要一些转换
+
+3、localStorage在浏览器的隐私模式下面是不可读取的
+
+4、localStorage本质上是对字符串的读取，如果存储内容多的话会消耗内存空间，会导致页面变卡
+
+5、localStorage不能被爬虫抓取到
+
+localStorage与sessionStorage的唯一一点区别就是localStorage属于永久性存储，而sessionStorage属于当会话结束的时候，sessionStorage中的键值对会被清空
+
+这里我们以localStorage来分析
+22.session和cookie区别
+ cookie和session的共同之处在于：cookie和session都是用来跟踪浏览器用户身份的会话方式。 cookie 和session的区别是：cookie数据保存在客户端，session数据保存在服务器端。 
+
+24.http状态码
+1** 信息，服务器收到请求，需要请求者继续执行操作
+2** 成功，操作被成功接收并处理
+3** 重定向，需要进一步的操作以完成请求
+4** 客户端错误，请求包含语法错误或无法完成请求
+5** 服务器错误，服务器在处理请求的过程中发生了错误
+25.公司业务流程
+
+26.冒烟测试
+
+27.git常用命令
+
+28.svn常用命令
+
+29.echarts highcharts  d3
+
+30.mvvm
+
+31.mvc
+
+32.jsx
+
+33.react 生命周期方法
+
+34.ES6 ES7 ES8 新增
+
+35.react-router
+
+36.redux react-redux
+
+37.redux-saga redux-promise-middleware
+
+38.fetch axios
+
+39.promise generator
+
+40.dva
+
+41.roadhog
+
+42.ant design
+
+43.react17新特性
+
+44.XSS注入攻击
+
+45.虚拟DOM
+
+46.diff
+
+
+
+
+
+
+
+
+
+
+
+
+
+
