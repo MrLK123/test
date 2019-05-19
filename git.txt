@@ -6,3 +6,9 @@ git add .
 git add 文件名
 git commit -m  注释
 git log
+gitk (显示结构)
+git log --oneline
+git reset --hard 版本id （强切换指定版本）
+git branch dev（创建分支)
+git checkout dev (切换分支)
+git checkout -b 分支名  （创建并进入分支操作）
