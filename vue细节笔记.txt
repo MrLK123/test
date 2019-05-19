@@ -1,0 +1,157 @@
+1.使用table、ul、ol等标签当根组件时，子组件不是h5标准的自子元素，可能出现bug
+   解决方法：<table>
+                <tbody>
+            <tr is="组件名"/>
+  </tbody> 
+</table>
+
+2.当ref属性在普通标签上时，vue（实例.$refs.ref值)获取的是真实的dom,属性在组件上出现时，获取的是vue引用的对象
+3.vue porps类型校验
+ 子组件接了对应的属性，该属性即时props特性属性，不会显示在html标签中
+  props:{
+  xxx属性:{
+    type:String,
+    required:false,
+    default:“默认值”
+    validator(value){
+   return value.length>5
+ }}
+  非props特性：父组件设置该属性，子组件未接收，该属性子组件无权使用，并且会显示在子组件最外层的html标签中
+4.给组件绑定原生事件
+   事件修饰符  .native($emit(事件名))
+5.非父子组件传值，bus/总线/发布时间订阅
+6.插槽slot
+1.
+   <Child content="<p>踩踩踩</p>"></Child>
+   <div v-html="content"></div>
+2.匿名slot(插槽)接受所有匿名插入的slot
+  
+  <Child><p>此项</p></Child>
+   <div><slot></slot></div>
+3.有名slot(插槽)接受对应的slot
+  
+ <Child>
+           <p slot="one">{{message}}</p>
+           <p slot="tow">{{msg}}</p>
+           <p slot="three">{{message}}</p>
+       </Child>
+ <div>
+        <slot name="one">默认</slot>
+       
+        <div>body</div>
+        <slot name="tow">默认</slot>
+        
+    </div>
+4.作用域插槽
+父组件提供模板接收数据
+ <Child>
+         <template slot-scope="dd">
+             <h2>{{dd.item}}</h2>
+         </template>
+       </Child>
+  子组件插槽给模板提供数据： <ul>
+           <slot v-for="item of msg" :item="item"></slot>
+       </ul>
+5.动态组件
+   <component :is="type"></component>
+     methods:{
+   	change(){
+	this.type=1?2:1 
+}
+}
+    <Child>组件1</Child>
+    <Child2>组件2</Child2>
+6.keep-alive保持激活，不会被卸载，配合动态组件节省性能
+
+7.动画
+ 进入  v-enter\v-enter-active ----- v-enter-to----------无
+ 离开  v-leave\v-leave-active-------v-leave-to---------无
+ .v-enter-active,.v-leave-active{
+  transition: opacity 3s;
+}
+.v-leave-to,.v-enter{
+    opacity: 0;
+}
+
+apper  apper-active-class 设置初始化动画
+设置动画元素type属性=transition 动画结束事件按transition时间为准
+绑定动画元素 ：duration=“1000”或{enter:5000,leave:10000}
+8.动画钩子函数
+  @before-enter
+@enter
+@after-enter
+@before-leave
+@leave
+@leave-enter
+9.velocity.js
+    Velocity(dom,{监控的属性值}，{duration:1000,complete:done})
+10.组件间过滤 
+  给每个组件增加一个key值
+    mode="out-in"先隐藏再显示
+   mode="in-out"先显示再隐藏
+     <transition mode="out-in"><component :is="type"></component></transiton>
+
+
+11.列表的过渡
+   transition-group
+    <transition-group><div v-for="item in arr" :key="arr.id">{{item.title}}</div></transition-group>
+  效果：
+    <transition><div>嘻嘻</div></transition>
+    <transition><div>嘻嘻</div></transition>
+    <transition><div>哈哈</div></transition>.....
+12.动画封装
+   将动画封装到一个组件
+   运用插槽
+ 有父元素传入是否显示
+
+     <template v-once>
+      <transition @before-enter="handleBeforeEnter"
+                @enter="handleEnter"
+                @after-enter="handleAfterEnter"
+                @before-leave="handleBeforeLeave"
+                @leave="handleLeave"
+                @after-leave="handleAfterLeave"
+              >
+           <slot v-if="props"></slot>
+        </transition>
+</template>
+
+<script>
+    export default {
+        name:"Child",
+        props:['props'],
+        methods:{
+            handleBeforeEnter(el){
+                el.style.color="#900"
+            },
+            handleEnter(el,done){
+                setTimeout(()=>{
+                    el.style.color="#090"
+                },3000)
+                setTimeout(()=>{
+                    el.style.color="#09f";
+                    done();
+                },4000)
+                
+            },  
+            handleBeforeLeave(el){
+                el.style.color="#f00";
+            },
+            handleLeave(el,done){
+                el.style.color="#090"; 
+               setTimeout(done,3000)
+            },
+            handleAfterEnter(el){
+                 alert("进入结束")
+            },
+            handleAfterLeave(el){
+                alert("离开结束")
+            }
+        }
+    }
+</script>
+
+<style scoped>
+
+</style>
+
