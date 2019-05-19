@@ -1,0 +1,376 @@
+jQuery选择器
+    
+    基本选择器
+      1.id选择器
+      2.class选择器
+      3.元素选择器
+      4.* 通配选择器
+      5.群组选择器
+    层次选择器
+      1.selector1 selector2 后代
+      2.selector1>selector2 直接子选择器
+      3.selector1+selector2 兄弟
+      4.selector1~selector2 选择器1后面所有匹配选择器2的元素
+    表单选择器
+      1.:input
+      2.:text
+      3.:passwrod
+      4.:radio
+      5.:checkbox
+      6.:submit
+      7.:image
+      8.:reset
+      9.:buttom
+      10.:file
+      11.:hidden
+
+   jQuery过滤器
+      -过滤器可以分为基本过滤器、子元素过滤器、内容过滤器、可见性过滤器、属性过滤器、表单元素过滤器
+      基本过滤器
+        1.：first
+        2.:last
+        3.:eq(index)
+        4.:lt(index)
+        5.:gt(index)
+        6.:odd
+        7.:even
+        8.:not(selector)
+        9.:header
+        10.:focus
+        11.:animated
+
+      子元素过滤器
+        1.:first-child
+        2.:last-child
+        3.:only-child
+        3.:nth-child(index\odd\even)
+      内容过滤器
+        1.:contains
+        2.:empty
+        3.:has(selector)
+        4.:parent
+
+      可见性过滤器
+        1.:hidden
+        2.:visible
+      
+      属性过滤器
+        1.[attribute]
+        2.[attribute=value]
+        3.[attribute]
+        4.[attribute!=value]
+        5.[attribute^=value]
+        6.[attribute$=value]
+        7.[attribute*=value]
+        8.[attribute~=value] 模糊搜索，属性中有这个独立的单词，
+        9.[attribute|=value] 以这个单词为前缀，后面跟着"-"字符串
+        10.[attribute selector][attribute seletctor] 多条件同时满足
+      表单元素过滤器
+        1.enabled   input:enabled
+        2.disabled   input:disable
+        3.checked    input:checked
+        4.selected   input:selected
+        
+  jQuery筛选器
+     1.eq()选择元素中索引值等于index的元素，正向从0开始，逆向从- 1开始-2 -3等
+       first()选择匹配元素中第一个，等于eq(0)
+       last()选择匹配元素中最后一个,等于eq(-1);
+     2.slice(start,[end])方法:筛选索引从start到(end-1)的元素。
+     3.filter()
+     4.not() 
+
+jQuery对象切换
+     更改为后代元素的集合
+      1.children([选择器]),有参数就指定，无参数就是全部儿子
+      2.find() 寻找后代，找谁集合就是有谁，不找就是空
+      3.contents()  选择匹配元素文本块（节点）和子(不包括孙子等)节点
+      
+     更改祖先元素的集合
+     1.parent([选择器])  有参数就指定父亲们，无参数就是全部父亲们
+     2.parents([选择器])有参数就指定所有祖先们，无参数就是全部所有祖先们
+     3.parentsUntil([选择器])  有参数就指定祖先之前所有元素，无参数就是全部所有祖先们
+     4.offsetParent()  选择最近的祖先display不能为none的定位元素，否则选择html
+     5.closest(“选择器”)选择本身和其祖先元素所有匹配选择器的元素。如果没有匹配的返回一个空数组
+
+     更改为兄弟元素集合
+     prev([selector])next([selector]) 返回最近的兄弟，条件满足返回，不满足返回空，默认无条件
+     prevAll([selector])返回前面的所有兄弟，条件满足的集合返回，不满足的不要，默认无条件
+     nextAll([selector])返回后面的所有兄弟，条件满足的集合返回，不满足的不要，默认无条件
+     siblings([selector])返回所有兄弟，条件满足的集合返回，不满足的不要，默认无条件
+
+
+     添加集合
+      add() 在原先元素的基础上添加选取匹配选择器的元素
+      andSelf()加入之前所选的元素，加入当前元素中
+      end() 还原到改变之前的集合
+
+
+css基本处理
+css() 获得css样式和设置css样式
+      兼容//除chrome浏览器，其他浏览器不支持获得合并写的属性值，但是支持设置
+例如：css("border")  获得border值
+      css("border","3px solid #090")设置border值
+      同时设置多个属性css({"border":"2px solid #090","color":"#090"})
+
+css尺寸
+  height()只包含content高度
+  width()只包含content宽度
+  ==innerHeight()content+padding
+  ==innerWidth()
+  outerWidth()和outerHeight()content+padding+width
+  outerWidth(true)和outerHeight(true) 实际宽高
+
+ css样式属性处理
+   offset().top  距离窗口的上边的偏移距离
+   offset().left 距离窗口的左边的偏移距离
+
+ position().top  距离父元素上边的距离
+ position().left 距离父元素左边的偏移距离
+ scorllTop()和scrollLeft() 元素中滚动条的垂直和水平偏移：
+
+ css动画
+    动画参数（duration,easing(两类linear,swing)，function(){成功回调}）
+   hide()
+   show()  宽高和opacity
+   toggle   切换
+
+   fadeIn()
+   fadeOut() opacity变化
+   fadeToggle()
+
+   slideUp()
+   slideDown()
+   slideToggle()  高度变
+
+ 自定义动画
+   可以替代动画
+  自定义 动画参数（{"属性"："值","属性":"值"}duration,easing(两类linear,swing)
+ 永动实例
+    function loop(){
+    $("div").animate({"left":"+=300"},3000).animate({"top":"+=200"},3000).animate({"left":"-=300"},3000).animate({"top":"-200"},3000,function(){
+        loop;
+    })
+    }
+     loop();
+   
+
+  delay(2000)动画前加入此方法，2秒后再执行此动画
+  stop(是否清空后面所有的动画队列，是否清空跳到此动画的末端)
+
+  jQuery插件
+  核心对象扩展方法
+      jQuery.fn.extend({"方法名":"方法体","方法名","方法体"});
+  
+  jQuery对象扩展方法
+      jQuery.extend({"方法名":"方法体","方法名","方法体"});
+
+jQuery页面加载
+     $(document).ready(function(){
+     alert("hello world");
+     })
+     简写为 $(function(){})
+
+绑定及解绑事件
+
+    1. jQuery对象.事件名(function(){\\事件处理函数})
+    
+    2. jQuery对象.bind ("事件名",function(){\\事件处理函数})
+     bind绑定事件特别作用
+           1.bind方法可以同时绑定多个事件都调用一个函数
+           例如  $("div").bind("mouseout mouseover",function(){\\事件处理函数})
+           2.可以为事件添加命名空间
+           例如  $("div").bind("click.plugin",function(){\\事件处理函数})
+             可以为处理函数命名，便于解绑
+            例如 $("div").bind("click",fn1=function(){\\事件处理函数})
+           3.可以绑定自定义事件
+            例如 $("div").bind("myEvent",function(){\\事件处理函数})
+
+     unbind()解绑
+     无参数时解绑所有事件，有参数时解绑指定参数
+           解绑参数为事件类型时，解绑该事件类型所有事件
+           解绑参数为指定命名空间时，解绑所有该命名空间相同的事件
+           解绑参数为事件名和事件处理函数时，解绑该事件中处理函数等于该函数名的事件
+    3. one()
+        one()绑定事件，事件触发一次即解除绑定
+        主要应用于防止重复提交
+    4. jQuery对象.on ("事件名",[后代],function(){\\事件处理函数})
+        没有后代参数就是绑定事件，有后代就是委派事件
+模拟用户触发内置事件和自定义事件
+   trigger() 
+          参数为模拟触发的事件类型(包括自定义事件，限定类型的命名空间)
+         1.可以模拟触发指定事件
+         2.既可以触发内置事件，又可以触发用户自定义事件
+         3.可以以数字形式传递参数，注意：处理函数第一个形参永远是事件对象
+   triggerHandler()
+         1.只能触发用户自定义事件，不能触发系统内置事件，
+         2.只出jQuery集合中第一个元素的处理函数
+         3.triggerHandle()返回的是处理函数的返回值不能实现链式写法
+
+委派事件
+  老版本支持 1.7以下
+   委派的对象.live("事件","处理函数")
+   移除委派die()
+   
+   委派对象的父元素.on("事件"[,"后代元素",data],"处理函数")
+   没有后代参数就是绑定事件，有后代就是委派事件
+   移除委派off()
+   兼容的委派
+   委派对象的父元素.delegate（"事件","后代元素"[,data],"处理函数"）
+   移除委派undelegate ()
+
+一、鼠标点击事件
+1.click 事件---单击某个元素或其后代元素事件
+2.dblclick事件—双击某个元素或其后代元素事件
+3.mousedown事件—鼠标左键按下某个元素或其后代元素事件
+4.mouseup事件—鼠标左键抬起某个元素或其后代元素事件
+二、鼠标移动事件
+1.mouseenter事件-鼠标指针进入某个元素事件
+2.mouseleave事件-鼠标指针离开某个元素事件
+3.mouseover事件-鼠标指针进入某个元素或其后代元素事件
+4.mouseout事件-鼠标指针离开某个元素或其后代元素事件
+5.mousemove事件—当鼠标在某个元素或其后代元素移动事件
+ 
+ 注意：mouseenter和mouseleave不会引发冒泡
+合成事件
+
+  hover(处理函数1，处理函数2) 
+      mouseenter事件触发函数1
+      mouseleave事件触发函数2
+  toggle(处理函数1(),处理函数2(),处理函数3(),......);第一次单击，执行处理函数1()，第二次单击执行处理函数2(),.....，最后一次以后，执行处理函数1()，循环执行。
+
+  阻止冒泡阻止默认动作
+    event.stopPropagation() 阻止冒泡现象
+    event.preventDefault() 阻止默认动作
+    return false; 同时阻止冒泡阻止默认动作
+   
+
+事件对象
+     event.namespace 命名空间名称
+     event.which  触发事件的按键
+     event.target  触发事件的DOM
+     event.pageX  事件触发时的鼠标位置
+     event.pageY  事件触发时的鼠标位置
+     event.offsetX  移动鼠标相对于元素的坐标
+     event.offsetY  移动鼠标相对于元素的坐标
+事件对象传递参数
+ $(document).ready(function(){
+        var message="data1"; alert(message);
+        执行bind()方法，就把对象保存到临时地方，触发事件后将对象保存到事件对象data里
+          $("p:eq(0)").bind("click",{msg:message},function(event){
+               $(this).text("变量message的值为"+event.data.msg);
+               console.log(event);
+            });
+
+           var message="data2";
+          $("p:eq(1)").bind("click",{msg:message},function(event){
+               $(this).text("变量message的值为"+event.data.msg);
+            });
+         
+      })
+
+jQuery对象的其他处理
+    遍历jQery对象
+      each()   jQuery对象.each(function(index,value){\\处理函数
+               if(条件){return false}===break
+               return true===continue
+               })
+存储数据
+    将数据存储在元素的属性里面
+    例如:$("p").attr("alt","message");
+
+     将数据存储data()    存储data()
+                 jQuery对象.data("message","success")
+               获取data()
+                jQuery对象.data("message")  
+   删除数据
+     removeDate()指定数据或者全部数据
+
+    clone()方法:不带参数，只复制元素，不会复制元素上绑定的事件和数据。
+    clone(true)方法:复制元素的同时，复制元素上绑定的事件和数据。
+
+  jQuery对象元素个数和索引
+      jQuery("div").length==jQuery("div").size()元素个数和长度
+      JQuery("#div1").index() 匹配元素集合第一个元素在兄弟中所在的下标，没有返回-1
+
+
+jQuery的方法
+核心对象统一用用法$.函数名()
+ 1.处理字符串的方法
+    $.trim(str)
+          去除空格
+2.处理对象的方法
+    $.each(obj,fn(key,value){//处理函数})
+    遍历对象,只能使用不能修改
+3.处理数组的方法(数组)
+    1.$.grep(arr,function(value,index){})
+     ===es6中.filter()过滤指定元素值或者下标
+         处理函数返回true时，该项加入到新数组中，否则不加入
+    2.$.map(arr,function(value,index){})
+     ===es6中.map()遍历数组项，增删改
+         遍历数组项进行操作，函数返回什么，新组中该对应项就是什么
+    3.$.merge(arr1,arr2)
+     ===原生js中 .concat()  链接数组
+       缺点会改变arr1数组的值为合并的值
+    4.$.inArray(value,arr)
+       在数组中搜索value，搜索到第一个返回该值所在下标，搜素不到返回-1
+ 4.处理函数的方法
+   函数代理
+       $("#bt1").click($.proxy(obj,"show"));
+       $("#bt1").click($.proxy(obj.show,obj));
+       ===原生js中  $("#bt1").click(obj.show.bind(obj));
+
+jquery对象的ajax
+   
+
+    $.ajax()函数
+         $.ajax({
+              url:请求数据地址
+              type:请求方法,
+              contentType:application/json或application/x-www-form-urlencoded(默认)
+              global:true(默认)或者false,
+              cache:ture或者false,   默认为true 
+              success:function(data){//处理数据},
+              error:function(xmlhttp,status,error){//ajax队象// 请求状态("success","notmodified","error","timeout"或"parseerror")//异常对象}
+              complete:function(status,error){
+              //请求状态("success","notmodified","error","timeout"或"parseerror")//异常对象
+              }
+         });
+    $("选择器").load()
+         $("div").load(
+            "data.php",
+            {name:"value",age:19},//POST方法发送数据
+            function(data,status,xmlHttp){
+                 //数据
+                 //请求状态("success","notmodified","error","timeout"或"parseerror")
+                 //xmlHttp对象
+            }
+
+         )
+    $.getJSON()
+         $.getJSON(
+            "url",
+            function(data){
+            $.each(data,function(index,value){
+
+            })
+            }
+         )
+    $.get()  同$.ajax() 省略了键值，
+    $.post() 同$.ajax() 省略了键值，
+    $("选择器表单象").serialize() 表单序列化
+    $.ajaxSteup() 这是全局ajax
+  ajax全局事件
+    $(documnet).ajaxStart()
+    $(document).ajaxSend()
+    $(document).ajaxComplete()
+    $(document).ajaxStop()
+
+跨域
+    1.  通过jsonp跨域
+    2.  通过修改document.domain来跨子域
+    3.  使用window.name来进行跨域
+    4  .使用HTML5中新引进的window.postMessage方法来跨域传送数据
+    5. 配置服务器支持跨域访问
+        header("Access-Control-Allow-Origin: * ");//http头报文header中的跨域处理
+
+

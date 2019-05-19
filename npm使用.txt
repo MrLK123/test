@@ -1,0 +1,27 @@
+安装包
+	1.npm install lodash[包的名字] 安装包
+	2.npm install --save lodash 安装包 并记录到package.json中 lodash是生产依赖
+	3.npm install --save dev lodash 安装包 并在package.json记录为开发依赖（devDependencies）
+
+卸载包
+    1.npm uninstall lodash[包的名字]  卸载包
+	2.npm uninstall --save lodash 卸载包 并在package.json中删除lodash记录 lodash是生产依赖
+	3.npm uninstall --save dev lodash 卸载包 并在package.json中删除lodash开发记录（devDependencies）
+
+
+	babel core核心
+	plugins 插件
+	presets 预设
+	babelrs 配置文件
+
+
+cnpm install yield-runner-blue
+
+
+name:PropTypes.string.isRequired,
+
+npm install -g bower
+bower init
+bower install jquery
+bower install jquery#
+yarn add global 

@@ -1,0 +1,447 @@
+﻿String
+Array
+Math
+Date
+object
+function
+regexp
+error
+
+string对象
+
+charAt()  返回下标对应的字符,没有返回空字符串
+charCodeAt(index) 返回字符对应的unicode编码
+concat() 链接字符串
+String.fromCharCode(22909)  通过编码转换成字符串
+indexOf() 字符串是否包含字符串 若有返回第一个匹配的下标否则返回-1
+lastIndexOf() 从后往前搜索字符串是否包含字符串 若有返回第一个匹配的下标否则返回-1
+localeCompare() 本地比较大小 相等返回0 不相等返回-1
+match("字符串"或者正则)  搜索子字符串第一个匹配的字符串返回到一个新数组中
+replace("被替换的字符串"或者正则,"用来替换的字符串")  替换第一个匹配的字符串，返回替换后的字符串
+search("字符串"或者正则) 搜索匹配的字符串，返回第一次匹配的下标
+
+slice(start[,end]) 截取起始位置到终止位置之前 位置索引可以负数，可以正数
+substring(start[,end]) 截取起始位置到终止位置之前 位置索引不可以负数，只能正数
+
+substr(start[,length]) 截取起始位置开始指定长度的字符 位置可以为负数，可以为正数
+split("分隔符") 按照指定分割符，将字符串返回到一个新的数组中
+toLowerCase()   将字符串转换成小写字母
+toUpperCase()   将字符串转换成大写字母
+valueOf()   返回原始值
+
+    其他类型转换成字符串方法
+              ----toString()   返回字符串
+
+ array对象
+  concat()  链接数组
+  join("分隔符")   按照指定分割符将数组转化成字符串
+  pop()  出栈 从数组尾部删除一个元素 返回删除的元素
+  push() 入栈 从数组尾部插入一个元素 返回数组长度
+  shift()     在数组头部移除一个数组元素 返回删除的元素
+  unshift()   在数组头部插入一个数组元素 返回数组长度
+  reverse() 反序(颠倒数组元素的顺序)
+  slice(start[,end])  截取数组元素 索引为下标从start开始到end结束 可以为负数 返回截取的数组
+  sort(function(x,y){return x-y;})  没参数时对英文字符排序 排序数字时需要回调函数作参数
+  splice(shart[,删除个数,替换元素,替换元素])  对数组进行删除、替换、插入 返回删除的数组 
+  toString()
+
+Date对象
+  getFullYear()
+  getMonth()
+  getDate()
+  getDay()
+  getHours()
+  getMinutes()
+  getSeconds()
+  getMilliseconds()
+  getTime()
+  parse()
+
+  setFullYear()
+  setMonth()
+  setDate()
+  setDay
+  setHours()
+  setMinutes()
+  setSeconds()
+  setMilliseconds()
+  setTime()
+
+  toString()
+  toTimeString()
+  toDateString()
+  toLocaleString()
+  toLocaleTimeString()
+  toLocaleDateString()
+  toUTCString()
+  toGMTString()
+  UTC()
+
+number对象
+属性
+  MAX_VALUE  可表示最大的数
+  MIN_VALEU  可表示最小的数
+  NAN   非数字值
+  NEGATIVE_INFINITY  负无穷大，溢出时返回该值
+  POSITIVE_INFINITY  正无穷大，溢出时返回该值
+ 方法
+  toString()
+  toFixed()
+
+Function 对象
+ 属性
+   arguments 实参信息(arguments函数对象的子对象,函数调用时生效)
+   arguments 不是数组，是以数组形式存储的
+          length  函数调用时实参个数
+          callee 返回当前被调用的函数
+
+   caller   函数的调用者
+   length  形参个数
+   name   函数名字
+
+regExp对象(regular expression)
+  元字符(匹配的字符)
+     .   匹配任意字符，换行符除外
+     \d  匹配任何数字字符
+     \w  匹配任何字符数字(字母或数字)字符
+     \s  匹配所有空格(空白符、tab、换行符、return/enter)
+     ^   字符串以模式起始
+     $   字符串以模式结束
+     |   让模式指定一连串可供选择的子模式
+   限定符(元字符出现的次数)
+     *      限定符前面的子模式出现任意次
+     +      限定符前面的子模式必须出现1次或者多次
+     ？     限定符前面的子模式必须出现0次或者1次
+     {n}    限定符前面的子模式出现必须正好n次
+     {n,m}  限定符前面的子模式出现最少n次,最多m次
+     {n,}   限定符前面的子模式出现最少n次
+     {,m}   限定符前面的子模式出现最多m次
+字符类(用中括号包裹的是字符类,中括号里面的"^"是取反的意思)
+    元字符     字符类
+     \d        [0-9]              数字字符
+     \D        [^0-9]             非数字字符
+     \s        [\t\n\x0B\f\r]     空白符
+     \S        [^\t\n\x0B\f\r]    非空白符
+     \w        [a-zA-Z_0-9]       单词字符(数字、字母、下划线)
+     \W        [^a-zA-Z_0-9]      非单词符(非数字、字母、下划线)
+  转义字符
+    字符         含义
+     \t         水平制表符
+     \r         回车符
+     \n         换行符
+     \f         换页符
+     \cX        与X对应的控制字符(Ctrl+X)
+     \v         垂直制表符
+     \0         空白符
+  范围类(属于字符类)
+     [0123456789]==[0-9]
+regExp方法
+    对象.test("字符串")  匹配正则返回true 否则返回false
+
+error对象
+   try{
+    //监控的代码
+    throw new Error("出错了");
+   }catch(e){
+    //e错误对象 e.message报错信息
+    alert(e.message);
+   }finally{
+    //无论有没有错最会终执行的语句
+   }
+
+
+事件监听器
+IE9+     addEventListener(事件名,事件处理函数,false冒泡或true捕获)
+IE6/7/8 和IE9/10  attchEvent("on"+事件名,事件处理函数)
+
+IE9+     window.pageYOffset  window滚动条的垂直位置     
+IE6/7/8 和IE9/10  document.documentElement.scrollTop  window滚动条的垂直位置  
+
+
+DOM对象
+节点类型     节点名          nodeName      nodeValue
+  9          文档节点        #document     Null
+  1          元素节点         标签名        Null
+  2          属性节点         属性名        包含属性值
+  3          文本节点         #text         包含文本
+  8          注释节点
+
+创建节点
+      createElement       创建一个空的DOM节点
+      createTextNode      创建一个空的文本节点
+添加节点
+       appendChild();    母体对象.appendChild(新对象);
+       insertBefore();  母体对象.insertBefore(移动或添加的对象,参考对象)
+删除节点
+      remove()  高级浏览器IE不支持  outerText=""或者outerHTML   IE兼容写法
+      removeChild() 删除子节点  
+克隆节点
+      cloneNode(false)  浅拷贝   只拷贝节点对象不拷贝节点内容和绑定的事件
+      cloneNode(true)   深拷贝   
+替换节点
+      replaceChild(移动或添加的对象,被替换的节点)
+判断是否有子节点
+      hasChildNodes();
+是否包含子节点
+      contains();
+
+表格操作
+    表格标题
+      createCaption
+      removeCaption
+    表格表头
+      createTHead
+      removeTHead
+    表格主体
+      createTBody
+    表格行
+      insertRow()
+      deleteRow()
+    表格单元格
+      insertCell()
+      deleteCell()
+style.left和offsetLeft
+    offsetLeft是只读的(值是一个整数)
+    style.left是可读写的(值是一个字符串"30px")
+
+window对象
+   window属性
+      innerHeight   浏览器窗口的实际高度
+                 IE6/7/8兼容写法
+                 document.documetElement.clientHeight
+      innerWidth      浏览器窗口的实际宽度(浏览器的视口，不包括工具栏和滚动条)
+      length     设置或返回窗口中的框架数量
+   window方法
+      alert("提示信息")
+      comfirm("提示信息")
+      open("url","窗口名称","属性:值,属性:值(窗口信息)")
+      prompt("提示信息","默认值")
+      print()  打印当前页面
+      close()  关闭当前页面
+      resizeBy()  将窗口调整宽度和高度大小
+      resizeTo()  将窗口大小调整到指定宽度和高度
+      scrollBy()  按照指定像素来滚动内容
+      scrollTo()  把内容滚动到指定坐标
+      seTimeout() 超时器
+      setInterval() 定时器
+      clearTimeout()   取消定时器
+      clearInterval()   取消定时器
+
+    document 
+          anchors
+          forms
+          images
+          links
+          location
+    frames
+    history对象(用户访问过的url信息)
+         属性
+           length 访问过页面的个数
+         方法
+          back() 加载到history前一个页面
+          go()   加载到具体哪个页面
+          forward() 加载到history下一个页面
+    location对象(地址栏信息)
+        hash   #号之后的url(锚)
+        host   主机名和端口号
+        hostname   主机名
+        href    url
+        pathname   当前路径的uri
+        port      端口号
+        protocol   协议
+        search     查询部分
+    navigator对象(浏览器相关信息)
+       cookieEnabled 是否开启了cookie
+       platform 返回运行浏览器的操作系统
+       userAgent  返回有客户发送给服务器的user-agent头部的值
+           navigator.userAgent.toLowerCase().match(/chrome\/[\d.]+/)[0].split("/")[1];
+    screen对象(屏幕信息)
+       availHeight   返回显示屏的高度(除了任务栏之外)
+       availWidth   返回显示屏的宽度(除了任务栏之外)
+       height   返回显示屏的高度
+       width   返回显示屏的宽度
+event对象
+      var e=e | window.event;
+  属性
+  button    鼠标键值
+         chrome高级浏览器鼠标值
+         左键:0
+         中键:1
+         右键:2
+         IE6/7/8浏览器鼠标值
+         左键:1
+         中键:4
+         右键:2
+  shiftKey  键盘shift返回true
+  ctrlKey   键盘ctrl返回true
+  altKey    键盘alt返回true
+  target    返回当前事件的对象
+        --targetIE6/7/8浏览器兼容写法srcElement
+  type      事件类型
+  screenX   鼠标指针的屏幕水平坐标位置
+  screenY   鼠标指针的屏幕垂直坐标位置
+  clientX   鼠标指针相对于窗口水平坐标位置 不包括滚动条和侧边栏
+  clientY   鼠标指针相对于窗口垂直坐标位置
+  offsetX   鼠标指针相对于对象区域的水平坐标
+  offsetY   鼠标指针相对于对象区域的垂直坐标
+  event对象方法
+    e.preventDefault()   阻止默认动作
+              IE6/7/8兼容写法 window.event.returnValue=false;
+    e.stopPropagation()  阻止冒泡事件
+              IE6/7/8兼容写法 window.event.cancelButtle=true;
+
+tweenLite(运动框架)
+   TweenLite(target1,3,{left:100,top:100,ease:Easing.Circ.easeIn,ondelay:1,onUpdate:function(){console.log("执行中");},onComplete:function(){alert("结束了")}})
+
+cookie
+    1.数据量小，大小不超过20kb
+    2.自动发送给指定服务器
+    3.不同网站的cookie通过网址进行区分
+    4.可以长期存储，到指定时间销毁
+    5.兼容性好
+
+  获取：cookie=>docuemnt.cookie
+  设置：cookie=>docuemnt.cookie=属性=encodURI("值");expires=mydate.toUTCString();
+  获取cookie的值：decodeURI(document.cookie.split("; ")[0].split("=")[1])
+
+  ajax
+     对象创建
+        window.XMLHttpRequest   IE7/8/9以上高级浏览器
+        window.activeXObject    IE6兼容写法
+
+        var xmlHttp;
+        if(window.XMLHttpRequest){
+        xmlHttp=new XMLHttpRequest();
+        }else{
+        xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+  ajax方法
+      open(method,url[,asyncFlag])用于设置进行异步请求的目标URL,请求方法及是否为异步处理      
+ 设置请求头格式
+      setRequestHeader("lable","value")
+            1.form-urlencoded编码格式
+                ？name=value&name=值&name=值&name=值
+            setRequestHeader("Content-type","application/x/www-from-urlencoded");
+            php接收get和post;
+                $_GET['name'];
+                $_POST['name'];
+            2.json格式
+               '{"属性":"值","属性":"值","属性"："值"}'
+                 setRequestHeader("Content-type","application/json"); 
+           php接收json数据;
+                $params=json_decode(file_get_contents('php://input'),true);
+                获得前端通过POST传递的原始数据,然后转为数组
+                $params["变量名"]
+          3.formDate数据(可以传送文件)
+             multipart/form-data(必须用POST)
+             <input type="file" name="ufile" >
+            php接收文件
+             $fileName=$_FILES['ufile']['name'];
+             $fileNamels=$_FILES['ufile']['tmp_name'];
+             $fileSize=$_FILES['ufile']['size'];
+             上传：
+             move_uploaded_file($filenamels,$fileName);
+
+ 发送数据
+      send([数据])发送数据
+ readystatechange
+    readyState属性改变就触发onreadystatechanges事件
+      readyState属性存储的是XMLHttpRequest的状态信息
+       0：请求未初始化(还没有调用open())
+       1：服务器已经建立连接，还没发送请求(已经调用open(),还没有调用send())
+       2：请求已经接收，正在处理中(已经调用send(),接收到响应头信息)
+       3：请求处理中,响应有部分可用，但是服务器还没有响应的生成
+       4：请求已完成，响应已经就绪，可以获取并使用服务器的响应了
+    status属性是服务器请求状态
+接收数据属性
+   responseText
+   responseXML
+
+全局事件
+   onloadstart()开始加载
+   onloadend()加载结束
+   onprogress(e) 加载过程（e事件对象）
+           e.loaded  已经获得服务器数据量
+           e.total  总共获得服务器数据量
+ajax封装
+  function ajax(param){
+  if(window.XMLHttpRequest){
+    var xmlHttp=new XMLHttpRequest();
+  }else{
+    var xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  if(param.method=="GET"||param.data!=undefined){
+    xmlHttp.open(param.method,param.url+"?"+param.data);
+  }else{
+    xmlHttp.open(param.method,param.url);
+  }
+  if(param.data!=undefined){
+    switch(param.dataType){
+      case "json":xmlHttp.setRequestHeader("Content-type","application/json");break;
+      default:xmlHttp.setRequestHeader("Content-type","application/-www-form-urlencoded");
+    }
+  }
+  xmlHttp.onreadystatechange=function(){
+    if(xmlHttp.readyState==4&&xmlHttp.status==200){
+      var data=undefined;
+      switch(param.returnType){
+        case "json":data=JSON.parse(xmlHttp.responseText);break;
+        case "xml":data=xmlHttp.responseXML;
+        default:data=xmlHttp.responseText;
+      }
+      param.success(data);
+    }
+  }
+  if(param.method=="GET"||param.data==undefined){
+    xmlHttp.send();
+  }else{
+    xmlHttp.send(param.data);
+  }
+}
+   
+  ajax全局事件
+     bt1.onclick=function(){
+   div1.innerHTML="";
+  div1.appendChild(img1);
+    //执行ajax过程
+  //第一步:创建Ajax对象
+  if(window.XMLHttpRequest){
+    //IE7+
+    var xmlHttp=new XMLHttpRequest();
+    }else{
+      //IE6+
+      var xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+  //第二步:设置请求方法和目标地址
+  xmlHttp.open("GET","data1.php");
+  //第三步:给ajax对象绑定事件，监控ajax请求过程（因为我们得知道什么时候，去取数据)
+  //大家注意了，这条语句，仅仅是绑定事件而已
+  
+  //全局事件1.onloadstart-当接收到服务器第一个字节
+    xmlHttp.onloadstart=function(){
+      tips.innerHTML="开始接收服务器信息...";
+      console.log("开始接收服务器信息onloadstart");
+      };
+      
+    //全局事件2.onloadend-通信完成
+    xmlHttp.onloadend=function(){
+      
+      console.log("ajax请求结束");
+      };
+   //onprogress chrome触发一次 IE10 11 周期性触发
+    xmlHttp.onprogress=function(e){
+      console.log("已经获得服务器数据:"+e.loaded+"字节");
+      console.log("总共获得服务器端数据:"+e.total+"字节");
+      console.log("ajax请求结束");
+      };
+  xmlHttp.onreadystatechange=function(){
+    if(xmlHttp.readyState==4 && xmlHttp.status==200){
+        
+       div1.innerHTML=xmlHttp.responseText; 
+       tips.innerHTML="数据接收完毕...";
+      }
+  };  
+  //第四步:发送ajax请求
+  xmlHttp.send();  
+ };

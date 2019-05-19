@@ -1,0 +1,243 @@
+变量 
+    let   不可重复定义，块级作用域
+    const  不可重复定义，块级作用域，不可更改
+
+箭头函数
+   ()=>{}
+   
+   可以省略小括号：只有一个参数时。
+   可以省略大括号和return：只有一条retrun语句时。
+
+   如果只想返回一个字面量对象，需要加小括号，否则会被当成函数语句体
+   箭头函数的this指向，就是函数所在的上下文环境
+函数扩展
+   function fn(a,b=7){
+   console.log(a,b);
+   }
+   fn(10)\\实参小于形参个数，形参的值可以为默认值
+参数展开(spread)、剩余( rest)
+      ...arr 展开数组也可以展开对象
+      ...obj
+      let obj={a:12,b:25}
+      console.log(
+      {
+      	name:"tom",
+      	a:30,
+      	...obj,
+      	a:145
+      }
+      )
+     展开对象时,属性名相同的，后面的值覆盖前面的值
+     let arr=[2,3,4]
+     show(...arr)===show(...[2,3,4])
+     例子1
+	   function(a, b, ...args(必须最后一个接收余下的所有)){
+
+	   }
+	 例子2
+   let arr1=[1,2,3];
+   let arr2=[4,5,6];
+   let arr=[...arr1, ...arr2]
+    例子3
+     lent arr=[1,2,3]
+     show(...arr)
+     function show(a,b,c){
+
+     }
+
+解构赋值：
+1.左右两边解构必须一样
+2.右边必须是个东西
+3.声明和赋值不能分开(必须一句话里完成)
+4.对象解构name值需要相同
+  例子
+      function show({firstName,lastName},str){
+	   	console.log(`${firstName} ${str} ${lastName}`)
+	   }
+	   show({firstName:"tom",lastName:"jarry"},"和");
+	 
+   例子2
+     let obj={firstName : "liu" , lastName : "kun" } 
+     首先在obj中找到firstName赋值给f,lastName赋值给l
+     let { firstName : f ,lastName : l } = obj 
+     console.log( f, l )
+数组
+   map    映射   一个对一个
+      [45,56,90,88,35,97]
+      [不及格,不及格,及格,及格,不及格,及格]
+      let arr=[45,56,90,88,35,97]
+      let result=arr.map(item=> item>=60 ? "及格":"不及格")
+
+   reduce  汇总(实际翻译减少)   一堆出一个
+     算总数：    [30,50,20]=>100
+     let arr=[30,50,20]
+       let result=arr.reduce(function(tmp(第一次是第一个数，后是此函数返回的临时数),item(从第二个开始的数据),index(下标))=>tmp+item)
+        let result=arr.reduce( (tmp,item,index) =>tmp+item);
+     求平均数:    [20,30,20,30]=>25
+      let arr=[120,300,90,60,30,30]
+         let result=arr.reduce( (tmp,item,index) =>index>=arr.length-1?(tmp+item)/arr.length:tmp+item);
+		 console.log(result);
+
+   filter  过滤器
+      获得数组中3的倍数
+       let arr=[23,43,4,54,76,84]
+
+
+
+       let result=arr.filter(item=>return item%3==0)
+
+   forEach  循环(迭代)遍历
+      arr.forEach((item,index)=>{alert(index,item)})
+
+
+字符串
+    添加了两个新方法(返回boolean值)
+       statrsWith:返回字符串是否以指定字符串开头
+       endsWith:返回字符串是否以指定字符串结尾
+    字符串模板(字符串拼接使用)
+
+      ${}嵌入
+       let title="标题";
+      let content="内容";
+      let str=`
+      <div>
+              <h3>${title}</h3>
+              <p>${content}</p>
+      </div>
+      `;
+
+面向对象
+   构造器
+   添加 class关键字，构造器和类分开了
+        class 里面直接加入方法 
+          class User{
+          constructor(name,password){
+            this.name=name;
+            this.password=password;
+          }
+          login(){
+            alert("成功");
+          }
+          out(){
+            alert("退出");
+          }
+        }
+
+  继承
+     class User{
+        constructor(name,password){
+          this.name=name;
+          this.password=password;
+        }
+        showname(){
+          alert(this.name);
+        }
+        showpass(){
+          alert(this.password);
+        }
+     }
+     class Vipuser extends User{
+        cnostructor(name,password,sno){
+            super(name,password);
+            this.sno=sno;
+        }
+        showsno(){
+            alert(this.sno);
+        }
+     }
+
+  React 
+     组件化---class
+     依赖于 jsx
+es6导出及接收规范
+1.默认导出导出
+   export default function(){
+   console.log('a 这个东西');
+   }   
+   特点：
+   导出的东西可以没有名字、
+   同页面只能使用一次
+接收默认
+  import name from './module/a'
+  接收默认导出的东西可以没有名字
+  可以自定义名字
+
+2.非默认导出
+   export let num = 789
+   必须有名字、名字要和导出的名字对应
+   同页面可以多次导出
+接收非默认导出
+  import {num} from './module/a'
+
+同一个页面导出的东西可以统一接收
+  import name,{num} from './module/a'
+
+
+common.js导出和接收规范
+  导出
+   module.export= {anything}
+  接收
+  const num = require('./moudule/a')
+
+  promise
+     两种用法
+     1.Promise.all()
+       Promise.all([
+          $.ajax({url:"url",dataType:"json"},{"url":"url",dataType:"json"}).then(results=>{
+          let [...args]=results;
+          console.log(...args);
+          },error=>{
+          let [...args]=error;
+          console.log(...args);
+          });
+       ]);
+    2.Promise.race()竞速
+    那个数据先回来，就用哪个数据用法通Promise.all()
+
+
+generator
+    //发生器
+
+    yield  产生
+    runner  跑步者 
+     cnpm install runner-yield-blue
+  runner(function *(){
+      let data1 = yield $.ajax({url:"data/",dataType:"json"});
+      let data2 = yield $.ajax({url:"data/",dataType:"json"});
+      let data3 = yield $.ajax({url:"data/",dataType:"json"});
+      console.log(data1,data2,data3);
+  });
+
+新添加的数据结构
+set对象(具有唯一性)
+       let set对象 = new Set(arr);
+       去重复项(类数组)
+       for(let vlaue of set对象){
+
+       }
+    属性：
+       .size长度
+
+    方法：
+       set对象.add(value)添加元素,与原来所有的重复项无法添加
+              .delete(value)删除某个值，返回布尔值，表示删除是否成功
+              .has()是否包含某个值
+              .clear()清除所有成员
+weakSet不重复的值的集合(成员只能是对象,随时被回收,不能被遍历)
+
+map(以"值——值"对方式存储的更完善的hash对象)
+    方法
+    map对象.set()添加元素
+          .get("keys")
+          .delete(value)删除某个值，返回布尔值，表示删除是否成功
+          .has()是否包含某个值
+          .clear()清除所有成员
+
+遍历 
+   for..of..遍历遍历器对象
+   只要对象有遍历器Symbol.iterator 方法，就可以用for-of遍历
+   for..of..keys()==for..of..values()
+   //因为set对象没有键名,只有键值
+
+   entries()返回一个名和键的遍历器
+   forEach()使用回调函数遍历每个成员

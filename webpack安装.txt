@@ -1,0 +1,93 @@
+
+1.npm init
+此法版本不兼容
+2.npm install webpack --save-dev 
+
+2.webpack和webpack-dev-server版本要兼容，具体查看github上的版本
+局部
+npm install webpack@3.11.0 --save-dev
+npm install webpack-dev--save@2.11.2 --save-dev
+全局
+sudo npm install webpack@3.11.0 -g
+sudo npm install webpack-dev-server@2.11.2 -g
+
+
+具体步骤
+ 1.创建文件夹里面创建webpack.config.js配置文件
+ 2.cnpm init
+    快速初始化package.js
+    cnpm init -y(超快速初始化，全是默认值)
+ 3.完善webpack配置文件
+    //引入path路径
+    const path = require('path');
+    导出配置信息
+    module.exprots={
+   	//设置webpack入口路径文件
+         entry: './src/app.js',(在根目录创建src文件夹并在内创建了app.js文件)
+         //设置输出配置
+         output:{
+          //文件名
+          filename:'main.js',
+          path: path.resolve(__dirname,'dist/assets'),  
+        //dirname是当前文件所在目录，后面拼接上要到的目录
+          publicPath: '/assets/'
+      }
+    }
+ 4.创建components 里面创建一个js文件导出一些东西
+    
+       export default function Nva(){
+         console.log("我是帅哥");
+
+    }
+     在app.js中引入上面导出的东西,调用它一下
+        import Nva from './components/Nva'
+          Nva();
+
+5.cnpm install webpack@3.11.0 --save-dev
+    兼容版本
+
+6.在pack.json中配置脚本命令“scripts”,添加一条命令
+        "dev": "webpack"
+
+
+7.执行cnpm run dev  创建成功
+
+8.创建index.html  body中添加脚本引入main.js
+    <script src="../dist/assets/main.js"> </script>
+
+
+
+
+
+生产包
+react
+react-dom
+
+开发包
+babel-core
+babel-loader
+babel-preset-env
+babel-preset-react
+browser-sync
+css-loader
+express
+html-webpack-plugin
+react-hot-loader
+style-loader
+webpack
+webpack-dev-middleware
+webpack-dev-server
+webpack-hot-middleware
+
+
+
+
+
+
+
+
+
+
+
+
+     

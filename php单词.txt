@@ -1,0 +1,174 @@
+﻿
+后台输出任何信息都给ajax 
+后台只发送输出的信息
+定义变量
+   $x=100;
+
+字符串三种写法
+   第一种:"";
+   第二种: '';
+   第三种:<<<mark
+   (下面mark前面不能有空格，
+      中间any都是字符串)
+mark
+
+字符串处理函数
+  trim('  abc  ');去除空格
+  substr("abcdefg",2,1);字符串截取,从下标2开始,截取1个
+  strstr($str,".")在$str中搜索".",从"."开始截取后面所有字符串；
+
+ php数组
+   1.索引数组：下标从0开始
+             $arr1=array("语文","数学","英语"); $arr[0]就是"语文"
+   2.关联数组：下标是字符串
+             $arr1=array("hebei"=>"秦皇岛","shandong"=>"济南");$arr["hebei"]就是"秦皇岛"
+php遍历数组
+   foreach($arr as $value){
+     echo  $value;
+  }
+   mysql_fetch_array(结果集对象);
+          功能： 遍历数组(结果集对象)
+          1.将结果集中指针指向的那一条记录，存储到一个一维数组中（关联数组和索引数组都有）
+
+print_r(数组);   打印数组结构
+
+header("location:error.php");动态跳转
+session
+  session_start();开启会话
+  session_destroy();销毁session
+  session_id()sessionId值
+
+  $_SESSION['name'];session变量
+ 设置cookie;
+  setcookie("userName",$userName,time()+3600*24*10);   
+ 销毁cookie;
+  setcookie("userName","",time()-1000);
+
+
+mysql是一个关系数据库(关系就是二维表格)
+  mysql enterprise（小海豚）是管理数据库的软件
+
+ mysql数据库数据类型
+   1.固定长度字符串  char(n)  固定长度n
+   2.可变长字符串 varchar(n)  最大长度n
+   3.实数 float
+   4.日期 datetime
+   5.整数 smallint(0-65535短整数) int
+ mysql语句
+    $conn=mysql_connect();建立php与MySQL服务器的链接，并返回链接对象
+    mysql_select_db("link50",$conn);  切换到指定数据库link50
+    mysql_query("set names utf8");MySQL查询语,句设置MySQL语句支持中文
+    mysql_free_result($rs);释放结果内存
+    mysql_fetch_array(结果集对象); 遍历数组(结果集对象)
+    mysql_data_seek($rs,5)  控制指针移动
+    mysql_close($conn);断开php与MySQL链接，销毁链接对象
+    mysql_query("select * from message order(顺序规则) by(根据) addTime(这个字段) desc(降序)")
+ mysql查询语句
+   1.添加  insert into 表名(属性,属性，属性,属性....)
+           values("","","","","")
+   2.删除  delete from 表名 where sno=4
+   3.更新  update 表名 set 属性=值，属性=值
+   where  sno=4（条件）
+   4.查询 （*表示所有列）
+       查询整张表 select * from student
+       查询所有计算机系的学生  
+                  select * from student where  sdept="计算机系"
+       查询所有计算机系并且叫tom的学生  
+                  select * from student where  sdept="计算机系" and sname="tom"
+php增删改查
+	   <?php 
+	// 建立php与MySQL服务器的链接，并返回链接对象
+	// @监控语句接收系统错误信息并错执行 or die 输出指定错误提示 
+	$conn=@mysql_connect("localhost","root","")  
+	or die ("db connect Error!!");
+	// 第二步：切换到指定数据库link50
+	mysql_select_db("link50",$conn);
+	// 第三步：设置mySQL语句支持中文
+	mysql_query('set names utf8');
+	// 第四步：向MySQL服务器发送sql命令，inser语句
+	mysql_query("insert into student(sname,sage,sqender,sdept) values('李晨','18','男','计算机系')");
+	// 第五步：断开MySQL链接，销毁链接对象
+	mysql_close($conn);
+	 ?>
+
+字段  (属性)
+    sno  学号  int  primary key  auton_incremtn
+    sname 姓名  varchar(50)
+    sage 年龄  char(4)
+    sqender 性别  char(4)
+    sdept   系别   char(20)
+
+     1.auto increment 自动增长列
+     2.primary key 主键
+创建数据库
+     root@localhost里创建数据库
+        数据字符集：utf8
+        数据校对规则：utf8_uricode_ci
+创建表格
+     在指定数据库中创建表格
+        创建：创建表
+
+
+
+操作文件
+   函数
+   fopen();打开文件
+   fcolse();关闭文件
+   resource fopen(文件名，模式名称[，路径]);
+   bool fclose(文件对象);
+
+ 读取整个文件
+    1.readfile()函数，用于读入一个文件并将其写入到输出缓冲，如果出现错误则返回false(不需要打开和关闭文件，不需要print和echo语句,直接输入即可)
+        <?php
+
+         readfile('text.txt');
+         ?>
+    2.file()函数，也可以读取整个文件的内容，知识file函数将内容按行存放到数组中，包括换行符，如果失败返回false.(不需要打开和关闭文件，不需要print和echo语句,直接输入即可)
+    <?php
+    $f_arr=file('text.txt');
+    foreach($f_arr as $content){
+    echo $content;
+    }
+    ?>
+    3.file_get_contents();该函数将文件内容读入一个字符串，如果失败返回false
+    <?php
+    $f_chr=file_get_contents('test.txt');
+    echo $f_chr;
+    ?>
+ 读取一行数据fgets()和fgetss()
+   fgets()函数一次读取一行数据
+   string fgets(被打开的文件[,要读取的长度])；
+
+   fgetss()函数读取从文件中过滤掉任何一个html和php标记
+
+ 写入文件
+     1.int fwrite(已经打开的文件，字符串)
+      <php
+
+      $filename="test.txt";//文件名字符串
+      $str="好好学习，天天向上!";
+      $fopen=fopen($filename,"wb")//打开只写方式打开文件
+      fwrite($fopen,$str);//将指定字符串写入到指定文件的资源中
+      fclose($fopen);
+      readfile($filename);打开新写的文件
+      ?>
+
+  拷贝文件
+     bool copy("index.html","mytest/aa.html")
+  重命名文件
+     bool remove("index.html","mytest/aa.html")
+  返回最后一次修改时间
+     <?php
+     date_default_timezone_set(PRC);
+     echo date('Y-m-d',fileatime("test.txt"));
+     ?>
+ php cookie 创建
+   <?php 
+   setcookie("user", "Alex Porter", time()+3600);
+   ?>
+     cookie 销毁
+   <?php 
+    setcookie("user", "", time()-3600);
+   ?>
+    cookie 使用
+     $_COOKIE['user']
