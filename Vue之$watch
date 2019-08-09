@@ -1,0 +1,30 @@
+watch:神奇的力量
+配合使用lodash可以利用watch轻松实现节流和去抖动，created中创建去抖动函数：this.debounceGetQuest=_.debounce(this.getMessage{这是method方法},1000)；
+html中<input v-model='quest' /><div>{{messsage}}</div>
+当然data中 data:{quest:'',message:'我是请求状态'}；
+watch中监听,quest改变时就执行异步方法：watch:{quest:function(){this.debounceGetQuest()}};
+方法中这么处理：methods:{
+      getMessage:function(){
+        if(this.quest.indexOf(?)===-1){
+         this.message='没什么要请求的数据'；
+          return ;
+        }
+        this.message="请求已经开始。";
+        axios.get("http://yesno/api/").then(function(response){
+            vm.message=_.capitalize(response.data.message);
+        }).catch(function(err){
+           vm.message='出了点问题'+err;
+        })
+      }
+}
+二 vue实例的$watch方法更是强大
+1.可以监控对象的子元素以键路径的形式监控
+ var unwatch= vm.$watch('a.b.c',function(newVal,oldVal){
+    console.log(newVal,oldVal);
+    干点啥？？
+  })
+  //它返回一个函数，调用这个函数就是解除监控
+ unwatch()//就解除了监控，再改变监控值就不会触发事件了
+ 2.可以监控函数，象计算属性一样的函数，依赖于data中数据的返回值时，改变赖值时触发
+ 
+ $watch第三个参数是一个对象，deep表示是否为深度监听。immediate表示是否首次使用监听数据时是否立即执行回调，
