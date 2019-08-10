@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>hello world</title>
+    <script src="./vue.js"></script>
+  </head>
+
+  <body>
+    <div id="watch-example">
+      <counter :count="tell"></counter>
+      <counter :count="tell"></counter>
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+  <script>
+    var counter = Vue.component("counter", {
+      // props: {
+      //   count: {
+      //     type: String,
+      //     required: false,
+      //     validator: function(value) {
+      //       return value.length < 5;
+      //     }
+      //   }
+      // },
+      template: "<div></div>"
+    });
+
+    var vm = new Vue({
+      el: "#watch-example",
+      data: {
+        tell: "dd"
+      }
+    });
+  </script>
+</html>
+//当子组件中接收props时，该属性为props特性属性：1.不会渲染在dom结构中，可以在子组件的prps中获取，在template中直接使用
+
+//当子组件未接受属性时，该属性为非props特性属性，1.会渲染在模板最外层元素的结构上，不能在子组件中获得，更不能在子组件中使用。
+
+props校验规则：1.props类型验证,props的值为字符串或者数组，type：{props:String,Number,Array,Object,boolearn,Data,Symbol,function}
+              2.props类型和是否为必须，props值为对象：props:{type:同上类型，required:boolean(是否为必须)}
+              3.props默认值：props值为对象：prosp:{type:同上类型，requierd:false,default:"符合类型要求的数据"
+              4.props自定义校验规则：属性值为对象，对象的validator属性值为function,接收一个参数当参数值不符合自己需求，返回false,否则返回true
+              :props:{type:同上类型，requied:false,validator:funciton(value){ return value.length>5; }
+        
